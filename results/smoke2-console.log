@@ -1,0 +1,25 @@
+==============================================================================
+Foundry account limit test | region=swedencentral | rg=rg-foundry-limit-swedencentral | target=2
+==============================================================================
+[preflight] Cognitive Services accounts already in swedencentral: 1 (AIServices/Foundry: 1)
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4: 2/1000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-mini: 0/1000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-nano: 2/5000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-pro: 0/160
+[preflight] quota OpenAI.GlobalStandard.gpt-5.6-sol: 2/1000
+[preflight] quota OpenAI.GlobalStandard.text-embedding-3-large: 2/1000
+[preflight] all 4 models available in swedencentral with GlobalStandard
+[preflight] documented cap = 100 Foundry resources/region/subscription; headroom = 99
+[setup] resource group ready: rg-foundry-limit-swedencentral
+[1/2] FAIL #1 fdysmk-v3q1b-001 (Error/account-cap, 4.1s) | cumulative OK=0
+[2/2] FAIL #2 fdysmk-v3q1b-002 (Error/account-cap, 7.5s) | cumulative OK=0
+
+==============================================================================
+Succeeded          : 0/2
+Accounts in region : 1 (cap 100)
+Failure breakdown  : {'account-cap': 2, 'model-quota': 0, 'capacity': 0, 'transient': 0, 'other': 0}
+Wall clock         : 7.5s
+Verdict            : Hard account cap reached. 1 Foundry (AIServices) accounts exist in swedencentral; further account creations were rejected by the platform with an account-count error. This confirms the documented limit of 100 Foundry resources per region per subscription.
+Reports            : C:\dev\foundry-deployment\results\foundry-limit-swedencentral-20260909T163742Z.json
+                     C:\dev\foundry-deployment\results\foundry-limit-swedencentral-20260909T163742Z.md
+==============================================================================

@@ -336,6 +336,28 @@ def get_usages(sub: str, region: str) -> list[dict]:
     )
 
 
+def get_account_quota(sub: str, region: str, kind: str = "AIServices", sku: str = "S0") -> dict | None:
+    """Return the platform's own account-count quota counter for a region.
+
+    ARM publishes ``<kind>.<sku>.AccountCount`` (e.g. ``AIServices.S0.AccountCount``)
+    alongside the model TPM usages. This is the counter the regional account cap
+    is actually enforced against, so it is strictly better than counting visible
+    accounts: soft-deleted accounts disappear from the account list but keep
+    consuming their slot until purged.
+
+    Returns ``{"name", "current", "limit"}`` or ``None`` if the counter is absent.
+    """
+    target = f"{kind}.{sku}.AccountCount".lower()
+    for u in get_usages(sub, region):
+        name = (u.get("name") or {}).get("value", "")
+        if name.lower() == target:
+            limit = float(u.get("limit") or 0)
+            if limit <= 0:
+                return None
+            return {"name": name, "current": float(u.get("currentValue") or 0), "limit": limit}
+    return None
+
+
 def list_region_models(sub: str, region: str) -> list[dict]:
     return _paged(
         f"/subscriptions/{sub}/providers/Microsoft.CognitiveServices/locations/{region}/models"
@@ -614,10 +636,30 @@ def main(argv: list[str] | None = None) -> int:
             return 3
         print(f"[preflight] all {len(models)} models available in {region} with {args.deployment_sku}")
 
-    # Effective headroom against the documented cap.
+    # Effective headroom. Prefer the platform's own quota counter over a live
+    # account listing: ARM exposes AIServices.S0.AccountCount, which is the
+    # counter the cap is actually enforced against. It differs from the visible
+    # account count whenever accounts are soft-deleted - a deleted account no
+    # longer appears in the account list but still consumes its slot until it is
+    # purged (48h retention). Counting visible accounts therefore reports false
+    # headroom and every deployment fails with InsufficientQuota for no apparent
+    # reason. Observed live: 1 visible account, counter still 100/100.
     documented_cap = 100
-    headroom = documented_cap - len(foundry_existing)
-    print(f"[preflight] documented cap = {documented_cap} Foundry resources/region/subscription; "
+    account_quota = get_account_quota(args.subscription, region)
+    if account_quota:
+        used, documented_cap = int(account_quota["current"]), int(account_quota["limit"])
+        headroom = documented_cap - used
+        print(f"[preflight] quota {account_quota['name']}: {used}/{documented_cap} (authoritative)")
+        ghosts = used - len(foundry_existing)
+        if ghosts > 0:
+            print(f"[preflight] WARNING: {ghosts} slot(s) held by soft-deleted accounts not "
+                  f"visible in the account list. Purge them to reclaim: "
+                  f"python scripts/cleanup.py --purge-only --region {region}")
+    else:
+        used = len(foundry_existing)
+        headroom = documented_cap - used
+        print("[preflight] account quota counter unavailable; falling back to visible account count")
+    print(f"[preflight] cap = {documented_cap} Foundry resources/region/subscription; "
           f"headroom = {headroom}")
 
     if args.dry_run:

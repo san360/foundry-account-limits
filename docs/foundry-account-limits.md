@@ -184,7 +184,7 @@ their capacity is drawn from the global pool. Deploying the same models in a sec
 
 ---
 
-## 2.6 Empirical confirmation
+### 2.6 Empirical confirmation
 
 The documented figure was validated by actually deploying against it. This section records
 what the platform did, not what the docs say.
@@ -264,8 +264,42 @@ specific capacity language (`capacity of quota`, `TPM`, `requested N … availab
 `accounts/deployments`) and falls back to account-cap when the message names the account.
 All five observed failures classify correctly as `account-cap` under this rule.
 
+### Reproduced — second independent run
+
+The whole experiment was torn down and re-run from a clean region to confirm the result was
+not an artifact of a single run:
+
+| | Run 1 | Run 2 |
+|---|---|---|
+| Attempts | 102 | 102 |
+| Succeeded | 97 | 97 |
+| Total accounts at stop | **100** | **100** |
+| Failures, all `account-cap` | 5 | 5 |
+| Wall clock | 424.6 s | 412.0 s |
+| Mean per account | ~40 s | 40.7 s |
+
+Identical to the account. Run 2 also validated the classifier fix live: run 1 mislabelled
+one of its five failures as `model-quota`, run 2 put all five in `account-cap` and zero in
+any other bucket.
+
+### The platform states both caps by name
+
+The usages API removes the guesswork entirely — it publishes the caps as named counters:
+
+```text
+AIServices.S0.AccountCount     100 / 100     <-- Foundry accounts, region full
+AccountCount                   100 / 200     <-- all Cognitive Services kinds
+OpenAI.S0.AccountCount           0 /  30     <-- Azure OpenAI, a separate bucket
+```
+
+That is direct platform confirmation of every headline number in this document — including
+that the 30-resource Azure OpenAI limit ([§ 2.3](#23-the-30-resource-limit-is-a-different-limit--do-not-conflate-them))
+really is tracked independently: 100 Foundry accounts existed while the OpenAI counter sat
+at 0.
+
 ---
 
+## 3. Region and model availability (verified)
 
 Verified live against the target subscription via the ARM
 `locations/{region}/models` endpoint. All four models are offered with the
@@ -325,6 +359,47 @@ az cognitiveservices account purge -n <name> -g <rg> -l swedencentral
 ```
 
 `scripts/cleanup.py` handles delete-then-purge automatically.
+
+#### This is the single most confusing failure mode — verified the hard way
+
+After tearing down all 99 test accounts and deleting the resource group, the region looked
+completely empty:
+
+```text
+az cognitiveservices account list  ->  1 account (the unrelated pre-existing one)
+```
+
+Yet the very next deployment failed instantly with `InsufficientQuota`. The account list
+was telling the truth *and* the platform was refusing — because the two are measuring
+different things.
+
+**ARM publishes the real counter**, alongside the model TPM usages:
+
+```powershell
+az rest --method get --url "https://management.azure.com/subscriptions/<sub>/providers/Microsoft.CognitiveServices/locations/swedencentral/usages?api-version=2025-06-01"
+```
+
+```text
+AIServices.S0.AccountCount     100 / 100     <-- the cap, by name
+AccountCount                   100 / 200     <-- the all-kinds cap, by name
+```
+
+One visible account, but the counter still read **100/100**. All 99 deleted accounts were
+sitting in `deletedAccounts`, invisible to the normal list, each still holding its slot.
+Purging them dropped the counter to `1/100` immediately and deployments succeeded again.
+
+Two lessons, both now baked into the tooling:
+
+1. **Never infer headroom from the account list.** `foundry_limit_test.py` reads
+   `AIServices.S0.AccountCount` in preflight and warns explicitly when the counter exceeds
+   the number of visible accounts, naming the purge command.
+2. **Deleting the resource group is not enough.** The RG cascade soft-deletes the accounts;
+   it does not purge them. A purge pass must run *after* the deletes finish — running it
+   concurrently finds nothing, because the accounts have not landed in `deletedAccounts`
+   yet. Use `python scripts/cleanup.py --purge-only --region <region>` afterwards.
+
+These two counters also independently confirm the documented limits straight from the
+platform: **100** for a single kind, **200** across all kinds.
 
 ---
 
@@ -430,14 +505,14 @@ Results are written to `results/` as a timestamped JSON dataset plus a Markdown 
 | ARM models/usages/accounts endpoints paginate at 50 | Follow `nextLink`; clear query params after the first hop because `nextLink` already embeds `api-version` |
 | Parallel writes to one account → 409 | `@batchSize(1)` on the deployment loop |
 | **Accounts cannot be deleted while child projects exist** → `CannotDeleteResource` | Delete every `accounts/{name}/projects/{project}` first, poll each to 404, *then* delete the account. Basic-mode accounts always have `proj-default`, so this is mandatory. `scripts/cleanup.py` does it automatically |
-| Soft-deleted accounts still consume the cap for 48 h | Delete **and** purge between runs |
+| **Soft-deleted accounts hold cap slots invisibly for 48 h** — the account list shows 1, the platform refuses at 100 | Read `AIServices.S0.AccountCount` from the usages API, never the account list. Purge with `cleanup.py --purge-only` |
+| **Deleting the RG does not purge** — the cascade only soft-deletes | Run a purge pass *after* the deletes finish; running it concurrently finds nothing because the accounts have not reached `deletedAccounts` yet |
 | `F0` is limited to one account per type | Use `S0` for any scale test |
 | Bicep emits `BCP081` on api-version `2026-07-01` | Benign — Bicep simply lacks local type definitions for the newest API; deployment succeeds |
 | `BCP138` — for-expressions are illegal in `output` | Use `map(modelDeployments, m => m.name)` instead of `[for m in …]` |
 | Raising `--capacity` makes model quota fail before the account cap | Keep `--capacity 1` when measuring the account ceiling |
 | Account cap and model quota share the `InsufficientQuota` code | Disambiguate on which resource the message names — see [§ 2.6](#26-empirical-confirmation). Covered by `tests/test_classify.py` |
 | CLI logged into several tenants | Always pass `--tenant` explicitly |
-| Deleting the resource group cascades, but leaves 99 soft-deleted accounts holding cap slots | Run the purge pass afterwards |
 
 ---
 

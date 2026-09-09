@@ -1,0 +1,124 @@
+==============================================================================
+Foundry account limit test | region=swedencentral | rg=rg-foundry-limit-swedencentral | target=102
+==============================================================================
+[preflight] Cognitive Services accounts already in swedencentral: 3 (AIServices/Foundry: 3)
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4: 2/1000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-mini: 0/1000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-nano: 2/5000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-pro: 0/160
+[preflight] quota OpenAI.GlobalStandard.gpt-5.6-sol: 2/1000
+[preflight] quota OpenAI.GlobalStandard.text-embedding-3-large: 2/1000
+[preflight] documented cap = 100 Foundry resources/region/subscription; headroom = 97
+[setup] resource group ready: rg-foundry-limit-swedencentral
+[1/102] OK  #10 fdycap2-6xsni-010 (Succeeded/ok, 44.2s) | cumulative OK=1
+[2/102] OK  #5 fdycap2-6xsni-005 (Succeeded/ok, 44.8s) | cumulative OK=2
+[3/102] OK  #8 fdycap2-6xsni-008 (Succeeded/ok, 45.8s) | cumulative OK=3
+[4/102] OK  #6 fdycap2-6xsni-006 (Succeeded/ok, 45.8s) | cumulative OK=4
+[5/102] OK  #9 fdycap2-6xsni-009 (Succeeded/ok, 45.9s) | cumulative OK=5
+[6/102] OK  #1 fdycap2-6xsni-001 (Succeeded/ok, 45.9s) | cumulative OK=6
+[7/102] OK  #2 fdycap2-6xsni-002 (Succeeded/ok, 46.6s) | cumulative OK=7
+[8/102] OK  #4 fdycap2-6xsni-004 (Succeeded/ok, 46.6s) | cumulative OK=8
+[9/102] OK  #3 fdycap2-6xsni-003 (Succeeded/ok, 65.8s) | cumulative OK=9
+[10/102] OK  #7 fdycap2-6xsni-007 (Succeeded/ok, 68.4s) | cumulative OK=10
+[11/102] OK  #12 fdycap2-6xsni-012 (Succeeded/ok, 40.7s) | cumulative OK=11
+[12/102] OK  #11 fdycap2-6xsni-011 (Succeeded/ok, 41.7s) | cumulative OK=12
+[13/102] OK  #16 fdycap2-6xsni-016 (Succeeded/ok, 43.9s) | cumulative OK=13
+[14/102] OK  #13 fdycap2-6xsni-013 (Succeeded/ok, 44.0s) | cumulative OK=14
+[15/102] OK  #17 fdycap2-6xsni-017 (Succeeded/ok, 43.4s) | cumulative OK=15
+[16/102] OK  #14 fdycap2-6xsni-014 (Succeeded/ok, 44.3s) | cumulative OK=16
+[17/102] OK  #15 fdycap2-6xsni-015 (Succeeded/ok, 44.3s) | cumulative OK=17
+[18/102] OK  #18 fdycap2-6xsni-018 (Succeeded/ok, 43.6s) | cumulative OK=18
+[19/102] OK  #19 fdycap2-6xsni-019 (Succeeded/ok, 38.1s) | cumulative OK=19
+[20/102] OK  #20 fdycap2-6xsni-020 (Succeeded/ok, 40.8s) | cumulative OK=20
+[21/102] OK  #21 fdycap2-6xsni-021 (Succeeded/ok, 38.1s) | cumulative OK=21
+[22/102] OK  #22 fdycap2-6xsni-022 (Succeeded/ok, 38.1s) | cumulative OK=22
+[23/102] OK  #26 fdycap2-6xsni-026 (Succeeded/ok, 39.5s) | cumulative OK=23
+[24/102] OK  #23 fdycap2-6xsni-023 (Succeeded/ok, 39.9s) | cumulative OK=24
+[25/102] OK  #24 fdycap2-6xsni-024 (Succeeded/ok, 40.1s) | cumulative OK=25
+[26/102] OK  #25 fdycap2-6xsni-025 (Succeeded/ok, 41.9s) | cumulative OK=26
+[27/102] OK  #28 fdycap2-6xsni-028 (Succeeded/ok, 41.7s) | cumulative OK=27
+[28/102] OK  #27 fdycap2-6xsni-027 (Succeeded/ok, 42.9s) | cumulative OK=28
+[29/102] OK  #29 fdycap2-6xsni-029 (Succeeded/ok, 36.8s) | cumulative OK=29
+[30/102] OK  #30 fdycap2-6xsni-030 (Succeeded/ok, 38.4s) | cumulative OK=30
+[31/102] OK  #31 fdycap2-6xsni-031 (Succeeded/ok, 37.5s) | cumulative OK=31
+[32/102] OK  #32 fdycap2-6xsni-032 (Succeeded/ok, 38.5s) | cumulative OK=32
+[33/102] OK  #33 fdycap2-6xsni-033 (Succeeded/ok, 39.5s) | cumulative OK=33
+[34/102] OK  #34 fdycap2-6xsni-034 (Succeeded/ok, 40.0s) | cumulative OK=34
+[35/102] OK  #35 fdycap2-6xsni-035 (Succeeded/ok, 40.7s) | cumulative OK=35
+[36/102] OK  #36 fdycap2-6xsni-036 (Succeeded/ok, 39.3s) | cumulative OK=36
+[37/102] OK  #38 fdycap2-6xsni-038 (Succeeded/ok, 38.4s) | cumulative OK=37
+[38/102] OK  #39 fdycap2-6xsni-039 (Succeeded/ok, 37.8s) | cumulative OK=38
+[39/102] OK  #40 fdycap2-6xsni-040 (Succeeded/ok, 38.0s) | cumulative OK=39
+[40/102] OK  #37 fdycap2-6xsni-037 (Succeeded/ok, 54.3s) | cumulative OK=40
+[41/102] OK  #41 fdycap2-6xsni-041 (Succeeded/ok, 37.8s) | cumulative OK=41
+[42/102] OK  #42 fdycap2-6xsni-042 (Succeeded/ok, 37.2s) | cumulative OK=42
+[43/102] OK  #45 fdycap2-6xsni-045 (Succeeded/ok, 37.7s) | cumulative OK=43
+[44/102] OK  #43 fdycap2-6xsni-043 (Succeeded/ok, 39.7s) | cumulative OK=44
+[45/102] OK  #47 fdycap2-6xsni-047 (Succeeded/ok, 37.8s) | cumulative OK=45
+[46/102] OK  #48 fdycap2-6xsni-048 (Succeeded/ok, 37.7s) | cumulative OK=46
+[47/102] OK  #49 fdycap2-6xsni-049 (Succeeded/ok, 36.3s) | cumulative OK=47
+[48/102] OK  #50 fdycap2-6xsni-050 (Succeeded/ok, 37.4s) | cumulative OK=48
+[49/102] OK  #44 fdycap2-6xsni-044 (Succeeded/ok, 54.9s) | cumulative OK=49
+[50/102] OK  #46 fdycap2-6xsni-046 (Succeeded/ok, 55.4s) | cumulative OK=50
+[51/102] OK  #51 fdycap2-6xsni-051 (Succeeded/ok, 37.6s) | cumulative OK=51
+[52/102] OK  #52 fdycap2-6xsni-052 (Succeeded/ok, 38.5s) | cumulative OK=52
+[53/102] OK  #54 fdycap2-6xsni-054 (Succeeded/ok, 38.2s) | cumulative OK=53
+[54/102] OK  #53 fdycap2-6xsni-053 (Succeeded/ok, 39.0s) | cumulative OK=54
+[55/102] OK  #55 fdycap2-6xsni-055 (Succeeded/ok, 38.2s) | cumulative OK=55
+[56/102] OK  #56 fdycap2-6xsni-056 (Succeeded/ok, 38.4s) | cumulative OK=56
+[57/102] OK  #57 fdycap2-6xsni-057 (Succeeded/ok, 37.7s) | cumulative OK=57
+[58/102] OK  #58 fdycap2-6xsni-058 (Succeeded/ok, 37.8s) | cumulative OK=58
+[59/102] OK  #59 fdycap2-6xsni-059 (Succeeded/ok, 39.4s) | cumulative OK=59
+[60/102] OK  #60 fdycap2-6xsni-060 (Succeeded/ok, 38.6s) | cumulative OK=60
+[61/102] OK  #61 fdycap2-6xsni-061 (Succeeded/ok, 38.5s) | cumulative OK=61
+[62/102] OK  #62 fdycap2-6xsni-062 (Succeeded/ok, 38.2s) | cumulative OK=62
+[63/102] OK  #64 fdycap2-6xsni-064 (Succeeded/ok, 38.5s) | cumulative OK=63
+[64/102] OK  #65 fdycap2-6xsni-065 (Succeeded/ok, 38.3s) | cumulative OK=64
+[65/102] OK  #63 fdycap2-6xsni-063 (Succeeded/ok, 42.4s) | cumulative OK=65
+[66/102] OK  #66 fdycap2-6xsni-066 (Succeeded/ok, 38.8s) | cumulative OK=66
+[67/102] OK  #67 fdycap2-6xsni-067 (Succeeded/ok, 38.1s) | cumulative OK=67
+[68/102] OK  #68 fdycap2-6xsni-068 (Succeeded/ok, 38.7s) | cumulative OK=68
+[69/102] OK  #69 fdycap2-6xsni-069 (Succeeded/ok, 37.7s) | cumulative OK=69
+[70/102] OK  #70 fdycap2-6xsni-070 (Succeeded/ok, 37.3s) | cumulative OK=70
+[71/102] OK  #71 fdycap2-6xsni-071 (Succeeded/ok, 37.1s) | cumulative OK=71
+[72/102] OK  #72 fdycap2-6xsni-072 (Succeeded/ok, 37.6s) | cumulative OK=72
+[73/102] OK  #74 fdycap2-6xsni-074 (Succeeded/ok, 38.1s) | cumulative OK=73
+[74/102] OK  #73 fdycap2-6xsni-073 (Succeeded/ok, 38.2s) | cumulative OK=74
+[75/102] OK  #75 fdycap2-6xsni-075 (Succeeded/ok, 36.9s) | cumulative OK=75
+[76/102] OK  #76 fdycap2-6xsni-076 (Succeeded/ok, 38.5s) | cumulative OK=76
+[77/102] OK  #77 fdycap2-6xsni-077 (Succeeded/ok, 37.8s) | cumulative OK=77
+[78/102] OK  #78 fdycap2-6xsni-078 (Succeeded/ok, 38.1s) | cumulative OK=78
+[79/102] OK  #80 fdycap2-6xsni-080 (Succeeded/ok, 38.4s) | cumulative OK=79
+[80/102] OK  #81 fdycap2-6xsni-081 (Succeeded/ok, 38.2s) | cumulative OK=80
+[81/102] OK  #82 fdycap2-6xsni-082 (Succeeded/ok, 38.1s) | cumulative OK=81
+[82/102] OK  #79 fdycap2-6xsni-079 (Succeeded/ok, 55.4s) | cumulative OK=82
+[83/102] OK  #83 fdycap2-6xsni-083 (Succeeded/ok, 37.3s) | cumulative OK=83
+[84/102] OK  #84 fdycap2-6xsni-084 (Succeeded/ok, 38.4s) | cumulative OK=84
+[85/102] OK  #85 fdycap2-6xsni-085 (Succeeded/ok, 37.7s) | cumulative OK=85
+[86/102] OK  #86 fdycap2-6xsni-086 (Succeeded/ok, 38.4s) | cumulative OK=86
+[87/102] OK  #87 fdycap2-6xsni-087 (Succeeded/ok, 38.9s) | cumulative OK=87
+[88/102] OK  #88 fdycap2-6xsni-088 (Succeeded/ok, 38.3s) | cumulative OK=88
+[89/102] OK  #89 fdycap2-6xsni-089 (Succeeded/ok, 37.8s) | cumulative OK=89
+[90/102] OK  #90 fdycap2-6xsni-090 (Succeeded/ok, 38.4s) | cumulative OK=90
+[91/102] OK  #91 fdycap2-6xsni-091 (Succeeded/ok, 37.3s) | cumulative OK=91
+[92/102] FAIL #100 fdycap2-6xsni-100 (Error/account-cap, 3.1s) | cumulative OK=91
+[93/102] FAIL #101 fdycap2-6xsni-101 (Error/account-cap, 3.6s) | cumulative OK=91
+[94/102] OK  #92 fdycap2-6xsni-092 (Succeeded/ok, 37.9s) | cumulative OK=92
+[95/102] FAIL #102 fdycap2-6xsni-102 (Error/account-cap, 3.7s) | cumulative OK=92
+[96/102] FAIL #98 fdycap2-6xsni-098 (Failed/account-cap, 21.3s) | cumulative OK=92
+[97/102] OK  #93 fdycap2-6xsni-093 (Succeeded/ok, 37.6s) | cumulative OK=93
+[98/102] FAIL #99 fdycap2-6xsni-099 (Failed/account-cap, 20.3s) | cumulative OK=93
+[99/102] OK  #94 fdycap2-6xsni-094 (Succeeded/ok, 37.2s) | cumulative OK=94
+[100/102] OK  #95 fdycap2-6xsni-095 (Succeeded/ok, 37.1s) | cumulative OK=95
+[101/102] OK  #96 fdycap2-6xsni-096 (Succeeded/ok, 38.1s) | cumulative OK=96
+[102/102] OK  #97 fdycap2-6xsni-097 (Succeeded/ok, 37.7s) | cumulative OK=97
+
+==============================================================================
+Succeeded          : 97/102
+Accounts in region : 100 (cap 100)
+Failure breakdown  : {'account-cap': 5, 'model-quota': 0, 'capacity': 0, 'transient': 0, 'other': 0}
+Wall clock         : 412.0s
+Verdict            : Hard account cap reached. 100 Foundry (AIServices) accounts exist in swedencentral; further account creations were rejected by the platform with an account-count error. This confirms the documented limit of 100 Foundry resources per region per subscription.
+Reports            : C:\dev\foundry-deployment\results\foundry-limit-swedencentral-20260909T165340Z.json
+                     C:\dev\foundry-deployment\results\foundry-limit-swedencentral-20260909T165340Z.md
+==============================================================================

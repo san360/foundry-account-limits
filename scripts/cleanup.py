@@ -208,24 +208,42 @@ def main() -> int:
     p = argparse.ArgumentParser(description="Delete and purge Foundry limit-test accounts.")
     p.add_argument("--subscription", default="70356d4b-bebe-4358-8baa-5dbdaf412088")
     p.add_argument("--tenant", default="2bab7b85-25a5-40d1-a83e-77d201b4da49")
-    p.add_argument("-g", "--resource-group", required=True)
+    p.add_argument("-g", "--resource-group", help="Required unless --purge-only.")
     p.add_argument("--region", default="swedencentral")
     p.add_argument("--prefix", default="fdy", help="Only touch accounts whose name starts with this.")
     p.add_argument("--parallel", type=int, default=10)
     p.add_argument("--purge", action="store_true", help="Also purge soft-deleted accounts.")
+    p.add_argument(
+        "--purge-only",
+        action="store_true",
+        help=(
+            "Skip deletion; only purge soft-deleted accounts. Use when the resource "
+            "group was already deleted -- its cascade soft-deletes the accounts, which "
+            "keep consuming the regional cap until they are purged."
+        ),
+    )
     p.add_argument("--delete-group", action="store_true", help="Delete the resource group at the end.")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args()
 
+    if args.purge_only:
+        args.purge = True
+    elif not args.resource_group:
+        p.error("-g/--resource-group is required unless --purge-only is given")
+
     token = TokenProvider(args.tenant)
     sub = args.subscription
 
-    accounts = [
-        a
-        for a in list_accounts(token, sub, args.resource_group)
-        if a.get("name", "").startswith(args.prefix)
-    ]
-    print(f"Resource group : {args.resource_group}")
+    accounts = (
+        []
+        if args.purge_only
+        else [
+            a
+            for a in list_accounts(token, sub, args.resource_group)
+            if a.get("name", "").startswith(args.prefix)
+        ]
+    )
+    print(f"Resource group : {args.resource_group or '(purge-only)'}")
     print(f"Region         : {args.region}")
     print(f"Prefix filter  : {args.prefix}")
     print(f"Accounts found : {len(accounts)}")

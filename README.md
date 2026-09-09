@@ -21,15 +21,25 @@ write-up with Microsoft Learn citations and the measured results.
 | Cap reached at | **100 accounts** |
 | Attempts made | 102 (deliberate overshoot) |
 | Created / rejected | 97 created, 5 rejected as `account-cap` |
-| Wall clock | 424.6 s at parallelism 10 |
-| Per-account time | ~37–58 s (account + project) |
-| Data-plane check | ✅ chat + embedding both returned over Entra ID auth |
+| Wall clock | 412–425 s at parallelism 10 (~40 s/account) |
+| Reproduced | ✅ two independent runs, identical to the account |
+| Data plane | ✅ chat + embedding both returned over Entra ID auth |
 | Resource group | not a constraint — all 100 coexisted in one group |
 
-The platform reports the cap as `InsufficientQuota` /
-`"Cannot create/update/move resource '<accountName>'"` — there is no message mentioning
-"100" or "accounts", so the harness classifies it by detecting that the message names the
-**account** rather than a model capacity figure.
+The platform states the cap by name in the usages API, which is the authoritative source:
+
+```text
+AIServices.S0.AccountCount     100 / 100     <-- Foundry accounts
+AccountCount                   100 / 200     <-- all Cognitive Services kinds
+OpenAI.S0.AccountCount           0 /  30     <-- Azure OpenAI, separate bucket
+```
+
+**Read that counter, never the account list.** Soft-deleted accounts vanish from the list
+but keep their slot for 48 h, so the region can look empty while being completely full.
+
+The cap error itself is `InsufficientQuota` / *"Cannot create/update/move resource
+'\<accountName\>'"* — no mention of "100" or "accounts", and the **same error code** as
+model-capacity exhaustion, so the harness disambiguates on which resource the message names.
 
 ---
 
@@ -153,8 +163,23 @@ Two things make teardown non-obvious, and both are handled automatically:
   script deletes every child project and polls each to 404 before touching the account.
 - **Soft-delete keeps consuming the cap.** A deleted Cognitive Services account is
   retained for 48 h and still occupies its slot in the 100. `--purge` is what actually
-  frees the region. Deleting the resource group alone cascades the accounts away but
-  leaves them all soft-deleted — the region stays full until you purge.
+  frees the region.
+
+> ⚠️ **If you used `--delete-group`, you must purge afterwards.** The resource-group
+> cascade soft-deletes every account but never purges them, and the purge pass in the
+> same invocation runs too early to see them — they have not reached `deletedAccounts`
+> yet. The region looks empty while remaining completely full. Run:
+>
+> ```powershell
+> python scripts\cleanup.py --purge-only --region swedencentral --prefix fdy
+> ```
+>
+> Confirm with the authoritative counter (**not** the account list):
+>
+> ```powershell
+> az rest --method get --url "https://management.azure.com/subscriptions/<sub>/providers/Microsoft.CognitiveServices/locations/swedencentral/usages?api-version=2025-06-01" `
+>   --query "value[?name.value=='AIServices.S0.AccountCount']"
+> ```
 
 ---
 
