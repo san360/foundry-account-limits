@@ -1,0 +1,124 @@
+==============================================================================
+Foundry account limit test | region=swedencentral | rg=rg-foundry-limit-swedencentral | target=102
+==============================================================================
+[preflight] Cognitive Services accounts already in swedencentral: 3 (AIServices/Foundry: 3)
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4: 2/1000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-mini: 0/1000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-nano: 2/5000
+[preflight] quota OpenAI.GlobalStandard.gpt-5.4-pro: 0/160
+[preflight] quota OpenAI.GlobalStandard.gpt-5.6-sol: 2/1000
+[preflight] quota OpenAI.GlobalStandard.text-embedding-3-large: 2/1000
+[preflight] documented cap = 100 Foundry resources/region/subscription; headroom = 97
+[setup] resource group ready: rg-foundry-limit-swedencentral
+[1/102] OK  #3 fdycap-vhidn-003 (Succeeded/ok, 44.5s) | cumulative OK=1
+[2/102] OK  #7 fdycap-vhidn-007 (Succeeded/ok, 44.5s) | cumulative OK=2
+[3/102] OK  #1 fdycap-vhidn-001 (Succeeded/ok, 45.2s) | cumulative OK=3
+[4/102] OK  #9 fdycap-vhidn-009 (Succeeded/ok, 46.2s) | cumulative OK=4
+[5/102] OK  #4 fdycap-vhidn-004 (Succeeded/ok, 48.0s) | cumulative OK=5
+[6/102] OK  #2 fdycap-vhidn-002 (Succeeded/ok, 50.0s) | cumulative OK=6
+[7/102] OK  #10 fdycap-vhidn-010 (Succeeded/ok, 50.2s) | cumulative OK=7
+[8/102] OK  #8 fdycap-vhidn-008 (Succeeded/ok, 50.6s) | cumulative OK=8
+[9/102] OK  #5 fdycap-vhidn-005 (Succeeded/ok, 51.1s) | cumulative OK=9
+[10/102] OK  #6 fdycap-vhidn-006 (Succeeded/ok, 51.5s) | cumulative OK=10
+[11/102] OK  #12 fdycap-vhidn-012 (Succeeded/ok, 41.7s) | cumulative OK=11
+[12/102] OK  #11 fdycap-vhidn-011 (Succeeded/ok, 42.5s) | cumulative OK=12
+[13/102] OK  #14 fdycap-vhidn-014 (Succeeded/ok, 44.2s) | cumulative OK=13
+[14/102] OK  #13 fdycap-vhidn-013 (Succeeded/ok, 45.9s) | cumulative OK=14
+[15/102] OK  #15 fdycap-vhidn-015 (Succeeded/ok, 43.4s) | cumulative OK=15
+[16/102] OK  #17 fdycap-vhidn-017 (Succeeded/ok, 41.6s) | cumulative OK=16
+[17/102] OK  #19 fdycap-vhidn-019 (Succeeded/ok, 40.9s) | cumulative OK=17
+[18/102] OK  #16 fdycap-vhidn-016 (Succeeded/ok, 42.1s) | cumulative OK=18
+[19/102] OK  #18 fdycap-vhidn-018 (Succeeded/ok, 41.7s) | cumulative OK=19
+[20/102] OK  #20 fdycap-vhidn-020 (Succeeded/ok, 63.4s) | cumulative OK=20
+[21/102] OK  #21 fdycap-vhidn-021 (Succeeded/ok, 37.4s) | cumulative OK=21
+[22/102] OK  #22 fdycap-vhidn-022 (Succeeded/ok, 38.9s) | cumulative OK=22
+[23/102] OK  #23 fdycap-vhidn-023 (Succeeded/ok, 41.2s) | cumulative OK=23
+[24/102] OK  #26 fdycap-vhidn-026 (Succeeded/ok, 40.3s) | cumulative OK=24
+[25/102] OK  #27 fdycap-vhidn-027 (Succeeded/ok, 41.4s) | cumulative OK=25
+[26/102] OK  #29 fdycap-vhidn-029 (Succeeded/ok, 41.4s) | cumulative OK=26
+[27/102] OK  #28 fdycap-vhidn-028 (Succeeded/ok, 42.0s) | cumulative OK=27
+[28/102] OK  #24 fdycap-vhidn-024 (Succeeded/ok, 54.6s) | cumulative OK=28
+[29/102] OK  #25 fdycap-vhidn-025 (Succeeded/ok, 55.2s) | cumulative OK=29
+[30/102] OK  #30 fdycap-vhidn-030 (Succeeded/ok, 39.1s) | cumulative OK=30
+[31/102] OK  #31 fdycap-vhidn-031 (Succeeded/ok, 37.2s) | cumulative OK=31
+[32/102] OK  #32 fdycap-vhidn-032 (Succeeded/ok, 38.2s) | cumulative OK=32
+[33/102] OK  #34 fdycap-vhidn-034 (Succeeded/ok, 39.3s) | cumulative OK=33
+[34/102] OK  #35 fdycap-vhidn-035 (Succeeded/ok, 39.3s) | cumulative OK=34
+[35/102] OK  #36 fdycap-vhidn-036 (Succeeded/ok, 39.1s) | cumulative OK=35
+[36/102] OK  #33 fdycap-vhidn-033 (Succeeded/ok, 42.2s) | cumulative OK=36
+[37/102] OK  #38 fdycap-vhidn-038 (Succeeded/ok, 37.9s) | cumulative OK=37
+[38/102] OK  #37 fdycap-vhidn-037 (Succeeded/ok, 52.8s) | cumulative OK=38
+[39/102] OK  #40 fdycap-vhidn-040 (Succeeded/ok, 40.8s) | cumulative OK=39
+[40/102] OK  #39 fdycap-vhidn-039 (Succeeded/ok, 54.5s) | cumulative OK=40
+[41/102] OK  #42 fdycap-vhidn-042 (Succeeded/ok, 38.6s) | cumulative OK=41
+[42/102] OK  #43 fdycap-vhidn-043 (Succeeded/ok, 36.7s) | cumulative OK=42
+[43/102] OK  #44 fdycap-vhidn-044 (Succeeded/ok, 38.6s) | cumulative OK=43
+[44/102] OK  #45 fdycap-vhidn-045 (Succeeded/ok, 43.5s) | cumulative OK=44
+[45/102] OK  #46 fdycap-vhidn-046 (Succeeded/ok, 43.3s) | cumulative OK=45
+[46/102] OK  #41 fdycap-vhidn-041 (Succeeded/ok, 56.9s) | cumulative OK=46
+[47/102] OK  #47 fdycap-vhidn-047 (Succeeded/ok, 37.0s) | cumulative OK=47
+[48/102] OK  #48 fdycap-vhidn-048 (Succeeded/ok, 36.9s) | cumulative OK=48
+[49/102] OK  #49 fdycap-vhidn-049 (Succeeded/ok, 39.4s) | cumulative OK=49
+[50/102] OK  #52 fdycap-vhidn-052 (Succeeded/ok, 39.8s) | cumulative OK=50
+[51/102] OK  #54 fdycap-vhidn-054 (Succeeded/ok, 38.3s) | cumulative OK=51
+[52/102] OK  #55 fdycap-vhidn-055 (Succeeded/ok, 37.8s) | cumulative OK=52
+[53/102] OK  #56 fdycap-vhidn-056 (Succeeded/ok, 39.3s) | cumulative OK=53
+[54/102] OK  #50 fdycap-vhidn-050 (Succeeded/ok, 57.3s) | cumulative OK=54
+[55/102] OK  #51 fdycap-vhidn-051 (Succeeded/ok, 57.3s) | cumulative OK=55
+[56/102] OK  #58 fdycap-vhidn-058 (Succeeded/ok, 38.8s) | cumulative OK=56
+[57/102] OK  #53 fdycap-vhidn-053 (Succeeded/ok, 58.1s) | cumulative OK=57
+[58/102] OK  #59 fdycap-vhidn-059 (Succeeded/ok, 37.4s) | cumulative OK=58
+[59/102] OK  #57 fdycap-vhidn-057 (Succeeded/ok, 54.4s) | cumulative OK=59
+[60/102] OK  #60 fdycap-vhidn-060 (Succeeded/ok, 39.2s) | cumulative OK=60
+[61/102] OK  #61 fdycap-vhidn-061 (Succeeded/ok, 40.2s) | cumulative OK=61
+[62/102] OK  #62 fdycap-vhidn-062 (Succeeded/ok, 40.7s) | cumulative OK=62
+[63/102] OK  #63 fdycap-vhidn-063 (Succeeded/ok, 41.2s) | cumulative OK=63
+[64/102] OK  #64 fdycap-vhidn-064 (Succeeded/ok, 40.8s) | cumulative OK=64
+[65/102] OK  #65 fdycap-vhidn-065 (Succeeded/ok, 39.7s) | cumulative OK=65
+[66/102] OK  #66 fdycap-vhidn-066 (Succeeded/ok, 37.5s) | cumulative OK=66
+[67/102] OK  #67 fdycap-vhidn-067 (Succeeded/ok, 38.0s) | cumulative OK=67
+[68/102] OK  #68 fdycap-vhidn-068 (Succeeded/ok, 36.9s) | cumulative OK=68
+[69/102] OK  #69 fdycap-vhidn-069 (Succeeded/ok, 40.9s) | cumulative OK=69
+[70/102] OK  #70 fdycap-vhidn-070 (Succeeded/ok, 38.7s) | cumulative OK=70
+[71/102] OK  #73 fdycap-vhidn-073 (Succeeded/ok, 38.2s) | cumulative OK=71
+[72/102] OK  #72 fdycap-vhidn-072 (Succeeded/ok, 41.0s) | cumulative OK=72
+[73/102] OK  #76 fdycap-vhidn-076 (Succeeded/ok, 38.2s) | cumulative OK=73
+[74/102] OK  #74 fdycap-vhidn-074 (Succeeded/ok, 41.0s) | cumulative OK=74
+[75/102] OK  #75 fdycap-vhidn-075 (Succeeded/ok, 40.7s) | cumulative OK=75
+[76/102] OK  #78 fdycap-vhidn-078 (Succeeded/ok, 39.2s) | cumulative OK=76
+[77/102] OK  #77 fdycap-vhidn-077 (Succeeded/ok, 40.6s) | cumulative OK=77
+[78/102] OK  #71 fdycap-vhidn-071 (Succeeded/ok, 58.6s) | cumulative OK=78
+[79/102] OK  #79 fdycap-vhidn-079 (Succeeded/ok, 41.0s) | cumulative OK=79
+[80/102] OK  #80 fdycap-vhidn-080 (Succeeded/ok, 41.4s) | cumulative OK=80
+[81/102] OK  #81 fdycap-vhidn-081 (Succeeded/ok, 42.8s) | cumulative OK=81
+[82/102] OK  #82 fdycap-vhidn-082 (Succeeded/ok, 42.8s) | cumulative OK=82
+[83/102] OK  #83 fdycap-vhidn-083 (Succeeded/ok, 41.0s) | cumulative OK=83
+[84/102] OK  #84 fdycap-vhidn-084 (Succeeded/ok, 40.6s) | cumulative OK=84
+[85/102] OK  #85 fdycap-vhidn-085 (Succeeded/ok, 40.7s) | cumulative OK=85
+[86/102] OK  #87 fdycap-vhidn-087 (Succeeded/ok, 37.8s) | cumulative OK=86
+[87/102] OK  #86 fdycap-vhidn-086 (Succeeded/ok, 40.5s) | cumulative OK=87
+[88/102] OK  #88 fdycap-vhidn-088 (Succeeded/ok, 38.5s) | cumulative OK=88
+[89/102] OK  #89 fdycap-vhidn-089 (Succeeded/ok, 41.6s) | cumulative OK=89
+[90/102] FAIL #99 fdycap-vhidn-099 (Error/account-cap, 2.7s) | cumulative OK=89
+[91/102] FAIL #100 fdycap-vhidn-100 (Error/account-cap, 3.7s) | cumulative OK=89
+[92/102] OK  #90 fdycap-vhidn-090 (Succeeded/ok, 37.9s) | cumulative OK=90
+[93/102] FAIL #101 fdycap-vhidn-101 (Error/account-cap, 4.2s) | cumulative OK=90
+[94/102] FAIL #102 fdycap-vhidn-102 (Error/account-cap, 4.4s) | cumulative OK=90
+[95/102] FAIL #98 fdycap-vhidn-098 (Failed/model-quota, 21.7s) | cumulative OK=90
+[96/102] OK  #93 fdycap-vhidn-093 (Succeeded/ok, 39.6s) | cumulative OK=91
+[97/102] OK  #91 fdycap-vhidn-091 (Succeeded/ok, 40.7s) | cumulative OK=92
+[98/102] OK  #94 fdycap-vhidn-094 (Succeeded/ok, 39.7s) | cumulative OK=93
+[99/102] OK  #92 fdycap-vhidn-092 (Succeeded/ok, 41.8s) | cumulative OK=94
+[100/102] OK  #95 fdycap-vhidn-095 (Succeeded/ok, 41.6s) | cumulative OK=95
+[101/102] OK  #96 fdycap-vhidn-096 (Succeeded/ok, 38.7s) | cumulative OK=96
+[102/102] OK  #97 fdycap-vhidn-097 (Succeeded/ok, 36.4s) | cumulative OK=97
+
+==============================================================================
+Succeeded          : 97/102
+Accounts in region : 100 (cap 100)
+Failure breakdown  : {'account-cap': 4, 'model-quota': 1, 'capacity': 0, 'transient': 0, 'other': 0}
+Wall clock         : 424.6s
+Verdict            : Hard account cap reached. 100 Foundry (AIServices) accounts exist in swedencentral; further account creations were rejected by the platform with an account-count error. This confirms the documented limit of 100 Foundry resources per region per subscription.
+Reports            : C:\dev\foundry-deployment\results\foundry-limit-swedencentral-20260909T131416Z.json
+                     C:\dev\foundry-deployment\results\foundry-limit-swedencentral-20260909T131416Z.md
+==============================================================================

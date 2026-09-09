@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Compiled ARM output (regenerated from Bicep at runtime)
+infra/foundry-account.json
+
+# Local environment / credentials — never commit
+.env
+*.env
+*.key
+*.pem
+azure-credentials.json
+
+# OS
+Thumbs.db
+.DS_Store

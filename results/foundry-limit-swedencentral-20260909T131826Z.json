@@ -1,0 +1,83 @@
+{
+  "run": {
+    "started_utc": "2026-09-09T13:18:05.119878+00:00",
+    "finished_utc": "2026-09-09T13:18:11.094921+00:00",
+    "subscription_id": "70356d4b-bebe-4358-8baa-5dbdaf412088",
+    "tenant_id": "2bab7b85-25a5-40d1-a83e-77d201b4da49",
+    "resource_group": "rg-foundry-limit-swedencentral",
+    "region": "swedencentral",
+    "run_id": "h3svq",
+    "target": 1,
+    "parallel": 1,
+    "deployment_sku": "GlobalStandard",
+    "capacity_per_deployment": 1,
+    "deploy_models": false,
+    "deploy_project": true,
+    "models": []
+  },
+  "summary": {
+    "preexisting_accounts": 100,
+    "attempted": 1,
+    "succeeded": 0,
+    "total_in_region_after": 100,
+    "failed_account_cap": 1,
+    "failed_model_quota": 0,
+    "failed_capacity": 0,
+    "failed_transient": 0,
+    "failed_other": 0,
+    "model_deployments_created": 0,
+    "mean_duration_s": 0,
+    "wall_clock_s": 6.0,
+    "documented_cap": 100,
+    "cap_reached": true,
+    "verdict": "**Hard account cap reached.** 100 Foundry (AIServices) accounts exist in `swedencentral`; further account creations were rejected by the platform with an account-count error. This confirms the documented limit of 100 Foundry resources per region per subscription."
+  },
+  "quota": [
+    {
+      "name": "OpenAI.GlobalStandard.gpt-5.4",
+      "current": 2.0,
+      "limit": 1000.0
+    },
+    {
+      "name": "OpenAI.GlobalStandard.gpt-5.4-mini",
+      "current": 0.0,
+      "limit": 1000.0
+    },
+    {
+      "name": "OpenAI.GlobalStandard.gpt-5.4-nano",
+      "current": 2.0,
+      "limit": 5000.0
+    },
+    {
+      "name": "OpenAI.GlobalStandard.gpt-5.4-pro",
+      "current": 0.0,
+      "limit": 160.0
+    },
+    {
+      "name": "OpenAI.GlobalStandard.gpt-5.6-sol",
+      "current": 2.0,
+      "limit": 1000.0
+    },
+    {
+      "name": "OpenAI.GlobalStandard.text-embedding-3-large",
+      "current": 2.0,
+      "limit": 1000.0
+    }
+  ],
+  "attempts": [
+    {
+      "index": 1,
+      "account_name": "fdyfull-h3svq-001",
+      "deployment_name": "fdy-001-1788959885",
+      "status": "Error",
+      "classification": "account-cap",
+      "duration_s": 6.0,
+      "error_code": "InvalidTemplateDeployment/InsufficientQuota",
+      "error_message": "The template deployment 'fdy-001-1788959885' is not valid according to the validation procedure. The following resource provider(s) - 'Microsoft.CognitiveServices/accounts (2026-07-01)' reported preflight validation errors. Tracking id is '15c23721-6e9b-4e04-a39a-7182595bba53'. See inner errors for details. | Insufficient quota. Cannot create/update/move resource 'fdyfull-h3svq-001'.",
+      "endpoint": "",
+      "provisioned_models": [],
+      "started_utc": "2026-09-09T13:18:05.130572+00:00",
+      "finished_utc": "2026-09-09T13:18:11.090307+00:00"
+    }
+  ]
+}
